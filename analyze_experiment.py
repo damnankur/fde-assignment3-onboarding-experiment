@@ -11,7 +11,7 @@ CSV_PATH = sys.argv[1] if len(sys.argv) > 1 else "experiment_results.csv"
 rows = []
 errors = []
 seen_ids = {}
-with open(CSV_PATH, "r", newline="", encoding="utf-8-sig") as f:
+with open(CSV_PATH, "r", newline="", encoding="utf-16") as f:
     reader = csv.DictReader(f)
     fields = reader.fieldnames
     for i, r in enumerate(reader, start=2):

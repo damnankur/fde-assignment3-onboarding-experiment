@@ -14,7 +14,7 @@ agg = {}          # (segment, variant) -> [n, converts, sum_userid]
 cnt = Counter()   # (segment, variant) -> count
 converts = Counter()
 
-with open(path, newline="", encoding="utf-8-sig") as f:
+with open(path, newline="", encoding="utf-16") as f:
     rd = csv.reader(f)
     header = next(rd)
     assert header == ["user_id", "segment", "variant", "converted"], header
@@ -93,7 +93,7 @@ for v in variants:
         pass
 # re-read to collect ids
 arms = {"control": [], "treatment": []}
-with open(path, newline="", encoding="utf-8-sig") as f:
+with open(path, newline="", encoding="utf-16") as f:
     next(csv.reader(f))
     for row in csv.reader(f):
         arms[row[2]].append(int(row[0]))
