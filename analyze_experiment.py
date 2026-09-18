@@ -64,10 +64,10 @@ def lift(ctl, trt):
 
 # ---------- Q1 ----------
 print("\n=== Q1: OVERALL NAIVE ===")
-d = pool(rows)
+overall = pool(rows)
 for v in variants:
-    print(f"  {v}: n={d[v]['n']}  converted={d[v]['conv']}  rate={cr(d[v]['n'], d[v]['conv'])*100:.4f}%")
-q1_lift = lift((d["control"]["n"], d["control"]["conv"]), (d["treatment"]["n"], d["treatment"]["conv"]))
+    print(f"  {v}: n={overall[v]['n']}  converted={overall[v]['conv']}  rate={cr(overall[v]['n'], overall[v]['conv'])*100:.4f}%")
+q1_lift = lift((overall["control"]["n"], overall["control"]["conv"]), (overall["treatment"]["n"], overall["treatment"]["conv"]))
 print(f"  naive lift = {q1_lift:.4f} pp")
 
 # ---------- Q2: by segment ----------
@@ -130,8 +130,8 @@ print(f"  OVERALL: treatment={ct['treatment']} ({ct['treatment']/total_n*100:.1f
 # ---------- JSON ----------
 answers = {
     "q1_naive_lift_pp": round(q1_lift, 6),
-    "q1_n_control": d["control"]["n"],
-    "q1_n_treatment": d["treatment"]["n"],
+    "q1_n_control": overall["control"]["n"],
+    "q1_n_treatment": overall["treatment"]["n"],
     "q2_untrustworthy_segment": "",
     "q3_mix_adjusted_lift_pp": round(weighted, 2),
     "q4_real_effect_segment": "",
